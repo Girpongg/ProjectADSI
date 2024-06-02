@@ -17,16 +17,12 @@ return new class extends Migration {
             $table->unsignedBigInteger('id_pelajaran');
             $table->unsignedBigInteger('id_guru');
             $table->unsignedBigInteger('id_ruangkelas');
-
-
-
-
-
-
+            $table->unsignedBigInteger('id_angkatan');
             
             $table->foreign('id_guru')->references('id')->on('gurus')->onDelete('cascade');
             $table->foreign('id_ruangkelas')->references('id')->on('ruang_kelas')->onDelete('cascade');
             $table->foreign('id_pelajaran')->references('id')->on('mata_pelajarans')->onDelete('cascade');
+            $table->foreign('id_angkatan')->references('id')->on('tahun_angkatans')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -8,6 +8,7 @@ use App\Models\RuangKelas;
 use App\Models\JadwalKelas;
 use Illuminate\Http\Request;
 use App\Models\MataPelajaran;
+use App\Models\TahunAngkatan;
 use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
@@ -23,6 +24,9 @@ class AdminController extends Controller
         $ruangkelas = RuangKelas::orderBy('nama')
             ->get(['id', 'nama'])
             ->toArray();
+        $angkatan = TahunAngkatan::all(['id', 'tahun_angkatan'])
+            ->sortBy('tahun_angkatan')
+            ->toArray();
         $jadwal = JadwalKelas::with(['mataPelajaran', 'guru', 'ruangkelas'])->get();
         $datajadwal = [];
         foreach ($jadwal as $j) {
@@ -33,14 +37,18 @@ class AdminController extends Controller
                 'pelajaran' => $j->mataPelajaran->nama,
                 'guru' => $j->guru->nama,
                 'ruangkelas' => $j->ruangkelas->nama,
+                'angkatan' => $j->angkatan->tahun_angkatan,
             ];
         }
+
         $data = [
             'title' => 'Jadwal Kelas',
             'matapelajaran' => $matapelajaran,
             'guru' => $guru,
             'ruangkelas' => $ruangkelas,
+            'angkatan' => $angkatan,
         ];
+
         $data['datajson'] = $datajadwal;
         return view('JadwalKelas', $data);
     }
@@ -50,7 +58,7 @@ class AdminController extends Controller
     }
     function store(Request $request)
     {
-        $data = $request->only(['hari', 'id_pelajaran', 'id_ruangkelas', 'id_guru', 'jam_mulai']);
+        $data = $request->only(['hari', 'id_pelajaran', 'id_ruangkelas', 'id_guru', 'jam_mulai', 'id_angkatan']);
         $valid = validator::make(
             $data,
             [
@@ -59,6 +67,7 @@ class AdminController extends Controller
                 'id_ruangkelas' => 'required | exists:ruang_kelas,id',
                 'id_guru' => 'required | exists:gurus,id',
                 'jam_mulai' => 'nullable',
+                'id_angkatan' => 'required | exists:tahun_angkatans,id',
             ],
             [
                 'hari.required' => 'Hari harus diisi',
@@ -68,6 +77,7 @@ class AdminController extends Controller
                 'id_pelajaran.exists' => 'Mata Pelajaran tidak valid',
                 'id_ruangkelas.required' => 'Ruang Kelas harus diisi',
                 'id_ruangkelas.exists' => 'Ruang Kelas tidak valid',
+                'id_angkatan.required' => 'Angkatan harus diisi',
             ],
         );
         // BR1: Guru tidak boleh mengajar lebih dari 1 kelas pada hari yang sama

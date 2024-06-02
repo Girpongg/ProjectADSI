@@ -22,6 +22,7 @@
                         <th>Days</th>
                         <th>Teacher</th>
                         <th>Subjects</th>
+                        <th>Angkatan</th>
                         <th>Classroom</th>
                         <th>Start Time</th>
                     </tr>
@@ -33,8 +34,10 @@
                             <td>{{ $item['hari'] }}</td>
                             <td>{{ $item['guru'] }}</td>
                             <td>{{ $item['pelajaran'] }}</td>
+                            <td>{{ $item['angkatan'] }}</td>
                             <td>{{ $item['ruangkelas'] }}</td>
                             <td>{{ $item['jam_mulai'] }}</td>
+                            <td></td>
                             <td>
                                 <a href="{{ route('jadwal.detail', $item['id']) }}"><button type="submit"
                                         class="bg-blue-500 p-2 rounded-lg text-white mr-10 hover:bg-blue-900">Detail</button>
@@ -104,6 +107,18 @@
                         <label for="id_guru"
                             class="select-label pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out motion-reduce:transition-none dark:text-neutral-200">
                             Guru
+                        </label>
+                    </div>
+                    <div class="relative mb-3">
+                        <select class="select" id="id_angkatan" data-te-select-init>
+                            <option value="">-</option>
+                            @foreach ($angkatan as $item)
+                                <option value="{{ $item['id'] }}">{{ $item['tahun_angkatan'] }}</option>
+                            @endforeach
+                        </select>
+                        <label for="id_angkatan"
+                            class="select-label pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out motion-reduce:transition-none dark:text-neutral-200">
+                            Tahun Angkatan
                         </label>
                     </div>
                     <div class="relative mb-3">
@@ -180,6 +195,7 @@
                 var id_guru = $('#id_guru').val();
                 var id_ruangkelas = $('#id_ruangkelas').val();
                 var jam_mulai = $('#jam_mulai').val();
+                var id_angkatan = $('#id_angkatan').val();
                 await $.ajax({
                     url: "{{ route('store') }}",
                     type: "POST",
@@ -189,6 +205,7 @@
                         id_guru: id_guru,
                         id_ruangkelas: id_ruangkelas,
                         jam_mulai: jam_mulai,
+                        id_angkatan: id_angkatan,
                         _token: "{{ csrf_token() }}"
                     },
                     success: async function(data) {

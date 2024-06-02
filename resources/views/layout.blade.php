@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
-    <title>Admin | {{ $title }}</title>
+    {{-- <title>Admin | {{ $title }}</title> --}}
     {{-- sweetalert cdn --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet" />
@@ -35,14 +35,14 @@
     </script>
 
     @yield('style')
+    @yield('coba')
 </head>
 
 <body>
-
     @yield('content')
+    <h1>Girvan</h1>
     <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/tw-elements.umd.min.js"></script>
     @yield('script')
-
 </body>
 
 </html>

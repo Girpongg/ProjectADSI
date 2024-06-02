@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 
@@ -17,9 +18,8 @@ use App\Http\Controllers\AdminController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/JadwalKelas',[AdminController::class,'jadwalKelas'])->name('JadwalKelas');
-Route::post('/store',[AdminController::class,'store'])->name('store');
-Route::delete('/delete/{id}',[AdminController::class,'delete'])->name('jadwal.delete');
+Route::get('/JadwalKelas', [AdminController::class, 'jadwalKelas'])->name('JadwalKelas');
+Route::post('/store', [AdminController::class, 'store'])->name('store');
+Route::delete('/delete/{id}', [AdminController::class, 'delete'])->name('jadwal.detail');
 
-Route::get('/detail/{id}',[AdminController::class,'detail'])->name('jadwal.detail');
-
+Route::get('/kuy',[UserController::class, 'index'])->name('kuy');
