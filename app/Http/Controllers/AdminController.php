@@ -114,17 +114,18 @@ class AdminController extends Controller
             return redirect()->route('JadwalKelas')->with('error', 'Jadwal tidak ditemukan');
         }
     }
-    public function detail($id)
-    {
-        $jadwal = JadwalKelas::find($id);
-        if ($jadwal) {
-            $data = [
-                'title' => 'Detail Jadwal',
-                'jadwal' => $jadwal,
-            ];
-            return view('detail', $data);
-        } else {
-            return redirect()->route('JadwalKelas')->with('error', 'Jadwal tidak ditemukan');
-        }
-    }
+
+    // public function detail($id)
+    // {
+    //     $data = $this->model->with('users')->where('id', $id)->first();
+    //     $data->bisa = $data->users()->wherePivot('status', 1)->count();
+    //     $data->tidak = $data->users()->wherePivot('status', 0)->count();
+    //     $data->start = Carbon::parse($data->start)->format('d/m/Y, h:i A');
+    //     $data->end = Carbon::parse($data->end)->format('d/m/Y, h:i A');
+    //     return view('admin.events-detail', [
+    //         'event' => $data,
+    //         'title' => 'Event Detail',
+    //         'user' => User::orderBy('division_id', 'asc')->orderBy('name', 'asc')->get(),
+    //     ]);
+    // }
 }

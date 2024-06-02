@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,7 +16,6 @@
     <script src="https://cdn.tailwindcss.com/3.3.0"></script>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.11.1/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
-
     <script>
         tailwind.config = {
             darkMode: "class",
@@ -33,14 +31,12 @@
             },
         };
     </script>
-
     @yield('style')
     @yield('coba')
 </head>
 
 <body>
     @yield('content')
-    <h1>Girvan</h1>
     <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/tw-elements.umd.min.js"></script>
     @yield('script')
 </body>
