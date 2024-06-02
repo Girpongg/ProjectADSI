@@ -28,4 +28,8 @@ class JadwalKelas extends Model
     public function angkatan(){
         return $this->belongsTo(TahunAngkatan::class, 'id_angkatan', 'id');
     }
+    public function detailKelas()
+    {
+        return $this->belongsTo(DetailKelas::class, 'kelas_id');
+    }
 }

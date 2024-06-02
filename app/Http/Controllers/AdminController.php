@@ -115,17 +115,21 @@ class AdminController extends Controller
         }
     }
 
-    // public function detail($id)
-    // {
-    //     $data = $this->model->with('users')->where('id', $id)->first();
-    //     $data->bisa = $data->users()->wherePivot('status', 1)->count();
-    //     $data->tidak = $data->users()->wherePivot('status', 0)->count();
-    //     $data->start = Carbon::parse($data->start)->format('d/m/Y, h:i A');
-    //     $data->end = Carbon::parse($data->end)->format('d/m/Y, h:i A');
-    //     return view('admin.events-detail', [
-    //         'event' => $data,
-    //         'title' => 'Event Detail',
-    //         'user' => User::orderBy('division_id', 'asc')->orderBy('name', 'asc')->get(),
-    //     ]);
-    // }
+    public function detail($id)
+    {
+        $data = JadwalKelas::with(['mataPelajaran', 'guru', 'ruangkelas', 'angkatan'])->find($id);        
+        $matapelajaran = MataPelajaran::all(['id', 'nama'])->sortBy('nama')->toArray();
+        $guru = Guru::all(['id', 'nama'])->sortBy('nama')->toArray();
+        $ruangkelas = RuangKelas::orderBy('nama')->get(['id', 'nama'])->toArray();
+        $angkatan = TahunAngkatan::all(['id', 'tahun_angkatan'])->sortBy('tahun_angkatan')->toArray();
+    
+        return view('DetailKelas', [
+            'event' => $data,
+            'title' => 'Event Detail',
+            'matapelajaran' => $matapelajaran,
+            'guru' => $guru,
+            'ruangkelas' => $ruangkelas,
+            'angkatan' => $angkatan,
+        ]);
+    }
 }

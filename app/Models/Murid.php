@@ -15,4 +15,10 @@ class Murid extends Model
     {
         return $this->hasMany(TahunAngkatan::class, 'id_angkatan', 'id');
     }
+
+    public function detailKelas()
+    {
+        return $this->belongsTo(DetailKelas::class, 'murid_id' );
+    }
+    
 }
