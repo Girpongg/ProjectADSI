@@ -16,7 +16,7 @@ use App\Http\Controllers\AdminController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('homepage');
 });
 Route::get('/JadwalKelas', [AdminController::class, 'jadwalKelas'])->name('JadwalKelas');
 Route::post('/store', [AdminController::class, 'store'])->name('store');
@@ -26,5 +26,8 @@ Route::put('/update/{id}', [AdminController::class, 'update'])->name('jadwal.upd
 
 
 
+Route::get('/upload', function () {
+    return view('UploadLatihanSoal');
+});
 
-Route::get('/kuy',[UserController::class, 'index'])->name('kuy');
+

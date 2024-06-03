@@ -18,6 +18,6 @@
 
 @section('content')
 <div class="centered-image">
-    <img src="https://freepng.com/uploads/images/202302/ree-vector-pink-pig-png_1020x.jpg" alt="Image">
+    <img src="assets/homepage infinity class.png" alt="Image">
 </div>
 @endsection
