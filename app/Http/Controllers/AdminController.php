@@ -95,9 +95,9 @@ class AdminController extends Controller
         }
         // BR3: Guru tidak boleh mengajar dua kelas yang berbeda pada waktu yang sama
         $teacherConflict = JadwalKelas::where('hari', $data['hari'])
-        ->where('id_guru', $data['id_guru'])
-        ->where('jam_mulai', $data['jam_mulai'])
-        ->exists();
+            ->where('id_guru', $data['id_guru'])
+            ->where('jam_mulai', $data['jam_mulai'])
+            ->exists();
         if ($teacherConflict) {
             return response()->json(['success' => false, 'message' => 'Guru sudah mengajar kelas lain pada waktu tersebut']);
         }
@@ -108,21 +108,27 @@ class AdminController extends Controller
     {
         $jadwal = JadwalKelas::find($id);
         if ($jadwal) {
-            $jadwal->delete();
-            return redirect()->route('JadwalKelas')->with('success', 'Jadwal berhasil dihapus');
-        } else {
-            return redirect()->route('JadwalKelas')->with('error', 'Jadwal tidak ditemukan');
+            $s = $jadwal->delete();
+            return response()->json(['success' => true, 'message' => 'Data has been deleted', 'data' => $s]);
         }
     }
 
     public function detail($id)
     {
-        $data = JadwalKelas::with(['mataPelajaran', 'guru', 'ruangkelas', 'angkatan'])->find($id);        
-        $matapelajaran = MataPelajaran::all(['id', 'nama'])->sortBy('nama')->toArray();
-        $guru = Guru::all(['id', 'nama'])->sortBy('nama')->toArray();
-        $ruangkelas = RuangKelas::orderBy('nama')->get(['id', 'nama'])->toArray();
-        $angkatan = TahunAngkatan::all(['id', 'tahun_angkatan'])->sortBy('tahun_angkatan')->toArray();
-    
+        $data = JadwalKelas::with(['mataPelajaran', 'guru', 'ruangkelas', 'angkatan'])->find($id);
+        $matapelajaran = MataPelajaran::all(['id', 'nama'])
+            ->sortBy('nama')
+            ->toArray();
+        $guru = Guru::all(['id', 'nama'])
+            ->sortBy('nama')
+            ->toArray();
+        $ruangkelas = RuangKelas::orderBy('nama')
+            ->get(['id', 'nama'])
+            ->toArray();
+        $angkatan = TahunAngkatan::all(['id', 'tahun_angkatan'])
+            ->sortBy('tahun_angkatan')
+            ->toArray();
+
         return view('DetailKelas', [
             'event' => $data,
             'title' => 'Event Detail',
@@ -131,5 +137,54 @@ class AdminController extends Controller
             'ruangkelas' => $ruangkelas,
             'angkatan' => $angkatan,
         ]);
+    }
+    public function update($id){
+
+        $data = request()->only(['hari', 'id_pelajaran', 'id_ruangkelas', 'id_guru', 'jam_mulai', 'id_angkatan']);
+        $valid = validator::make(
+            $data,
+            [
+                'hari' => 'required',
+                'id_pelajaran' => 'required | exists:mata_pelajarans,id',
+                'id_ruangkelas' => 'required | exists:ruang_kelas,id',
+                'id_guru' => 'required | exists:gurus,id',
+                'jam_mulai' => 'nullable',
+                'id_angkatan' => 'required | exists:tahun_angkatans,id',
+            ],
+            [
+                'hari.required' => 'Hari harus diisi',
+                'id_pelajaran.required' => 'Mata Pelajaran harus diisi',
+                'id_guru.required' => 'Guru harus diisi',
+                'id_guru.exists' => 'Guru tidak valid',
+                'id_pelajaran.exists' => 'Mata Pelajaran tidak valid',
+                'id_ruangkelas.required' => 'Ruang Kelas harus diisi',
+                'id_ruangkelas.exists' => 'Ruang Kelas tidak valid',
+                'id_angkatan.required' => 'Angkatan harus diisi',
+            ],
+        );
+        // BR1: Guru tidak boleh mengajar lebih dari 1 kelas pada hari yang sama
+        if ($valid->fails()) {
+            $errors = $valid->errors()->all();
+            return response()->json(['success' => false, 'message' => implode(', ', $errors)]);
+        }
+        // BR2: Ruangan tidak boleh digunakan untuk dua kelas yang berbeda pada waktu yang sama
+        $roomConflict = JadwalKelas::where('hari', $data['hari'])
+            ->where('id_ruangkelas', $data['id_ruangkelas'])
+            ->where('jam_mulai', $data['jam_mulai'])
+            ->exists();
+        if ($roomConflict) {
+            return response()->json(['success' => false, 'message' => 'Ruangan sudah terisi pada waktu tersebut']);
+        }
+        // BR3: Guru tidak boleh mengajar dua kelas yang berbeda pada waktu yang sama
+        $teacherConflict = JadwalKelas::where('hari', $data['hari'])
+            ->where('id_guru', $data['id_guru'])
+            ->where('jam_mulai', $data['jam_mulai'])
+            ->exists();
+        if ($teacherConflict) {
+            return response()->json(['success' => false, 'message' => 'Guru sudah mengajar kelas lain pada waktu tersebut']);
+        }
+        $s= JadwalKelas::find($id);
+        $s->update($data);
+        return response()->json(['success' => true, 'message' => 'Data has been updated', 'data' => $s]);
     }
 }

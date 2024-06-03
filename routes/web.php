@@ -21,6 +21,8 @@ Route::get('/', function () {
 Route::get('/JadwalKelas', [AdminController::class, 'jadwalKelas'])->name('JadwalKelas');
 Route::post('/store', [AdminController::class, 'store'])->name('store');
 Route::get('/detail/{id}', [AdminController::class, 'detail'])->name('jadwal.detail');
+Route::delete('/delete/{id}', [AdminController::class, 'delete'])->name('jadwal.delete');
+Route::put('/update/{id}', [AdminController::class, 'update'])->name('jadwal.update');
 
 
 
