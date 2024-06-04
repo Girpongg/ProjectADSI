@@ -122,11 +122,11 @@
                                                     {{ $item->materipelajaran }}
                                                 </td>
                                                 <td class="px-6 py-4">
-                                                    {{ substr(basename($item->file), 0, -29) }}.{{ pathinfo($item->file, PATHINFO_EXTENSION) }}
+                                                    {{basename($item->file)}}
                                                 </td>
                                                 <td>
                                                     <a href="{{ asset('storage/' . $item->file) }}"
-                                                        download="{{ substr(basename($item->file), 0, -29) }}.{{ pathinfo($item->file, PATHINFO_EXTENSION) }}">
+                                                        download="{{basename($item->file)}}">
                                                         <i class=" text-blue-500">Download</i>
                                                     </a>
                                                 </td>
@@ -138,6 +138,7 @@
                                             </tr>
                                         </form>
                                     @endforeach
+
                                 </tbody>
                             </table>
                         </div>
@@ -208,3 +209,4 @@
             });
         </script>
     @endsection
+
