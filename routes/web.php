@@ -19,6 +19,9 @@ Route::get('/', function () {
     return view('homepage');
 });
 Route::post('/uploads', [AdminController::class, 'uploadPost'])->name('modul.upload');
+Route::delete('/delete{id}', [AdminController::class, 'deleteModul'])->name('modul.delete');
+
+
 Route::get('/JadwalKelas', [AdminController::class, 'jadwalKelas'])->name('JadwalKelas');
 Route::post('/store', [AdminController::class, 'store'])->name('store');
 Route::get('/detail/{id}', [AdminController::class, 'detail'])->name('jadwal.detail');

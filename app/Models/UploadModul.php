@@ -16,7 +16,7 @@ class UploadModul extends Model
     }
     public function kelas()
     {
-        return $this->belongsTo(RuangKelas::class, 'id_angkatan');
+        return $this->belongsTo(TahunAngkatan::class, 'id_angkatan');
     }
 
 }

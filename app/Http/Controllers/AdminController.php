@@ -211,10 +211,12 @@ class AdminController extends Controller
             ->sortBy('tahun_angkatan')
             ->toArray();
 
+        $upload = UploadModul::with(['pelajaran', 'kelas'])->get();
         $data=[
             'title' => 'Upload Latihan Soal',
             'matapelajaran' => $matapelajaran,
             'angkatan' => $angkatan,
+            'upload' => $upload,
         ];
         return view('UploadLatihanSoal',$data);
     }
@@ -254,4 +256,12 @@ class AdminController extends Controller
         return response()->json(['success' => true, 'message' => 'Data has been saved', 'data' => $s]);
     }
     
+    public function deleteModul($id)
+    {
+        $upload = UploadModul::find($id);
+        if ($upload) {
+            $s = $upload->delete();
+            return redirect()->route('upload')->with('success', 'Data has been deleted');
+        }
+    }
 }
