@@ -18,16 +18,14 @@ use App\Http\Controllers\AdminController;
 Route::get('/', function () {
     return view('homepage');
 });
+Route::post('/uploads', [AdminController::class, 'uploadPost'])->name('modul.upload');
 Route::get('/JadwalKelas', [AdminController::class, 'jadwalKelas'])->name('JadwalKelas');
 Route::post('/store', [AdminController::class, 'store'])->name('store');
 Route::get('/detail/{id}', [AdminController::class, 'detail'])->name('jadwal.detail');
 Route::delete('/delete/{id}', [AdminController::class, 'delete'])->name('jadwal.delete');
 Route::put('/update/{id}', [AdminController::class, 'update'])->name('jadwal.update');
 
+Route::post('/postmurid/{id}', [AdminController::class, 'postmurid'])->name('postmurid');
+Route::delete('/deletemurid/{id}', [AdminController::class, 'deletemurid'])->name('deletemurid');
 
-
-Route::get('/upload', function () {
-    return view('UploadLatihanSoal');
-});
-
-
+Route::get('/upload', [AdminController::class, 'upload'])->name('upload');

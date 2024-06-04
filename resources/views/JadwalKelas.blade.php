@@ -186,8 +186,7 @@
                 }
             });
         });
-
-
+        
         $(document).ready(function() {
             $('#submit').on('click', async function() {
                 var hari = $('#hari').val();

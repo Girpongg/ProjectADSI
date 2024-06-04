@@ -38,6 +38,17 @@
             document.documentElement.setAttribute('data-theme', 'light');
         });
     </script>
+    <style>
+            ::-webkit-scrollbar {
+                width: 10px;
+                background-color: #ffffff;
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background-color: #0800ff;
+                box-shadow: 6px 6px 0px #d8d800;
+            }
+    </style>
     @yield('style')
 </head>
 
@@ -46,16 +57,20 @@
         <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
             <div class="relative flex items-center justify-between h-20">
                 <div class="flex items-center">
-                    <img class="h-12 w-auto mr-3" src="assets/logo infinity class.png" alt="Logo">
+                    <img class="h-8 w-auto" src="assets/logoinfinityclass.png" alt="Logo">
                     <span class="ml-2 text-4xl font-bold text-yellow-400">Infinity</span>
                     <span class="ml-2 text-4xl font-bold text-blue-900">Class</span>
                 </div>
                 <div class="flex h-full items-center justify-center space-x-4">
                     <div class="h-full flex items-center">
-                        <a href="/upload" class="text-blue-900 hover:bg-yellow-400 hover:text-blue-900 px-3 py-2 rounded-full text-m font-medium">Upload Latihan Soal</a>
+                        <a href="/upload"
+                            class="text-blue-900 hover:bg-yellow-400 hover:text-blue-900 px-3 py-2 rounded-full text-m font-medium">Upload
+                            Latihan Soal</a>
                     </div>
                     <div class="h-full flex items-center">
-                        <a href="/JadwalKelas" class="text-blue-900 hover:bg-yellow-400 hover:text-blue-900 px-3 py-2 rounded-full text-m font-medium">Tambah Kelas</a>
+                        <a href="/JadwalKelas"
+                            class="text-blue-900 hover:bg-yellow-400 hover:text-blue-900 px-3 py-2 rounded-full text-m font-medium">Tambah
+                            Kelas</a>
                     </div>
                 </div>
             </div>

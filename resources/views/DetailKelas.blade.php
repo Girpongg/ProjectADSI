@@ -55,7 +55,7 @@
                 </select>
                 <label for="id_guru"
                     class="absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-6 text-neutral-500 transition-all duration-200 ease-out {{ $event->id_pelajaran ? 'text-primary -translate-y-3 scale-75' : '' }}">
-                    Mata Pelajaran
+                    Guru
                 </label>
             </div>
             <div class="relative w-full mb-3">
@@ -115,6 +115,65 @@
                 </div>
             </div>
         </div>
+
+        <div class="flex flex-col w-full py-8 rounded-lg shadow-xl items-center justify-center mb-10 px-8">
+            <table class="table table-striped mb-5 " id="data">
+                <h1 class="mb-5"><strong>MURID YANG TERDAFTAR DI KELAS INI</strong></h1>
+                <thead>
+                    <th>Nama</th>
+                    <th>Angkatan</th>
+                    <th>Action</th>
+                </thead>
+                <tbody>
+                    @foreach ($detail_kelas as $item)
+                        <form action="{{ route('deletemurid', $item->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <tr>
+                                <td>{{ $item->murids->nama }}</td>
+                                <td>{{ $item->murids->tahunAngkatan->tahun_angkatan }}</td>
+                                <td>
+                                    <button type="submit" data-te-ripple-init data-te-ripple-color="light"
+                                        class=" inline-block rounded bg-red-600 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-red-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-red-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-red-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
+                                        Delete Student
+                                    </button>
+                                </td>
+                            </tr>
+                        </form>
+                    @endforeach
+                </tbody>
+
+            </table>
+        </div>
+        <div class="flex flex-col w-full py-8 rounded-lg shadow-xl items-center justify-center mb-10 px-8">
+            <form action="{{ route('postmurid', $event->id) }}" method="POST">
+                @csrf
+                <table class="table table-striped mb-5 " id="data">
+                    <h1 class="mb-5"><strong>MURID YANG BELUM TERDAFTAR DI PELAJARAN INI</strong></h1>
+                    <thead>
+                        <th>Nama</th>
+                        <th>Angkatan</th>
+                        <th>Action</th>
+                    </thead>
+                    <tbody>
+                        @foreach ($murid as $item)
+                            <tr>
+                                <td>{{ $item->nama }}</td>
+                                <td>{{ $item->tahunAngkatan->tahun_angkatan }}</td>
+                                <td>
+                                    <input type="checkbox" name="user_id[]" value="{{ $item->id }}">
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+
+                </table>
+                <button type="submit" data-te-ripple-init data-te-ripple-color="light"
+                    class="w-full inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
+                    Add Student
+                </button>
+            </form>
+        </div>
     @endSection()
 
     @section('script')
@@ -133,8 +192,6 @@
                             labelElement.classList.remove('active');
                         }
                     });
-
-                    // Check initial state
                     if (selectElement.value !== '') {
                         labelElement.classList.add('active');
                     }
@@ -194,7 +251,6 @@
                     var id_ruangkelas = $('#id_ruangkelas').val();
                     var jam_mulai = $('#jam_mulai').val();
                     var id_angkatan = $('#id_angkatan').val();
-
                     await Swal.showLoading();
                     $.ajax({
                         url: url_update,

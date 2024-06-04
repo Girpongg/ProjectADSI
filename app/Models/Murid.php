@@ -13,12 +13,13 @@ class Murid extends Model
 
     public function tahunAngkatan()
     {
-        return $this->hasMany(TahunAngkatan::class, 'id_angkatan', 'id');
+        return $this->belongsTo(TahunAngkatan::class, 'id_angkatan', 'id');
     }
 
     public function detailKelas()
     {
         return $this->belongsTo(DetailKelas::class, 'murid_id' );
     }
+    
     
 }

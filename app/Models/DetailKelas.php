@@ -19,6 +19,10 @@ class DetailKelas extends Model
     }
     public function murid()
     {
-        return $this->hasMany(Murid::class, 'murid_id');
+        return $this->hasMany(Murid::class, 'murid_id', 'id');
+    }
+    public function murids()
+    {
+        return $this->belongsTo(Murid::class, 'murid_id', 'id');
     }
 }
