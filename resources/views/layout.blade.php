@@ -40,12 +40,12 @@
     </script>
     <style>
             ::-webkit-scrollbar {
-                width: 10px;
+                width: 4px;
                 background-color: #ffffff;
             }
 
             ::-webkit-scrollbar-thumb {
-                background-color: #0800ff;
+                background-color: lightgray;
                 box-shadow: 6px 6px 0px #d8d800;
             }
     </style>
