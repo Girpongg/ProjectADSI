@@ -122,7 +122,7 @@
                                                     {{ $item->materipelajaran }}
                                                 </td>
                                                 <td class="px-6 py-4">
-                                                    {{ substr(basename($item->file)) }}.{{ pathinfo($item->file, PATHINFO_EXTENSION) }}
+                                                    {{basename($item->file)}}
                                                 </td>
                                                 <td>
                                                     <a href="{{ asset('storage/' . $item->file) }}"
