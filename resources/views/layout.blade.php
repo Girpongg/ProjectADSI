@@ -68,8 +68,8 @@
                             Iuran</a>
                     </div>
                     <div class="h-full flex items-center">
-                        <a href="{{ route('pertanyaan') }}"
-                            class="text-blue-900 hover:bg-yellow-400 hover:text-blue-900 px-3 py-2 rounded-full text-m font-medium">
+                        <a href="{{ route('soal.index') }}"
+                            class="text-blue-900 hover:bg-yellow-400 hover:text-blue-900 px-3 py-2 rounded-full text-m font-medium {{ Route::is('soal.*') ? 'bg-warning' : '' }}">
                             Diskusi Tanya Jawab Soal</a>
                     </div>
                     <div class="h-full flex items-center">

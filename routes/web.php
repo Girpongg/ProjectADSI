@@ -38,3 +38,11 @@ Route::post('/postmurid/{id}', [AdminController::class, 'postmurid'])->name('pos
 Route::delete('/deletemurid/{id}', [AdminController::class, 'deletemurid'])->name('deletemurid');
 
 Route::get('/upload', [AdminController::class, 'upload'])->name('upload');
+
+Route::prefix('/soal')->name('soal.')->namespace('App\Http\Controllers\soal')->group(function(){
+    Route::resource('/', 'SoalController');
+});
+
+// Route::prefix('/global')->name('global.')->group(function () {
+//     Route::get('/file/preview', 'FileController@GetPreview')->name('file.preview');
+// });
