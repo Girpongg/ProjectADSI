@@ -45,7 +45,7 @@
                 <div class="mt-3" style="display: flex; flex-wrap: wrap; justify-content: end;">
                     <div class="">
                         @if ($item->jawaban!=null)
-                            <button class="btn btn-success"><i class="fa fa-check"></i>Done</button>
+                            <button class="btn btn-success" style="color: white;"><i class="fa fa-check"></i>Done</button>
                         @else
                             <button class="btn btn-outline-warning">Mark as done</button>
                         @endif
@@ -122,7 +122,7 @@
                                 <h5 style="font-weight: bold">Pertanyaan `+(index+1)+`</h5>
                                 <p>`+nl2br(item['pertanyaan'])+`</p>
                                 <div class="" style="display: flex; flex-wrap: wrap; justify-content: end;">
-                                <button class="btn btn-success"><i class="fa fa-check"></i>Done</button>
+                                <button class="btn btn-success" style="color: white;"><i class="fa fa-check"></i>Done</button>
                                 </div>
                             </div>
                             `);
