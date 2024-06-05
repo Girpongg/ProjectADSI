@@ -24,7 +24,7 @@
         @foreach ($soals as $key => $item)
             <div class="mb-2" style="width: 99%; max-width: 800px; border-radius: 20px; border: 2px solid rgba(0,0,0,.1); padding: 15px 30px;">
                 <h5>Pertanyaan {{ $key+1 }}</h5>
-                <p>{{ $item->deskripsi }}</p>
+                <p>{{ $item->pertanyaan }}</p>
                 <div class="" style="display: flex; flex-wrap: wrap; justify-content: end;">
                     <button class="btn btn-outline-info">Mark as done</button>
                 </div>
@@ -50,13 +50,17 @@
                     `
                     ` 
                 );
-                array.forEach(myFunction);
+                data.forEach(myFunction);
                 function myFunction(item, index, arr) {
                     // arr[index] = item * 10;
+                    // console.log("DUARrrr");
+                    // console.log(item);
+                    // console.log(index);
+                    // console.log(arr);
                     $('.bodywrap').append(`
                     <div class="mb-2" style="width: 99%; max-width: 800px; border-radius: 20px; border: 2px solid rgba(0,0,0,.1); padding: 15px 30px;">
-                        <h5>Pertanyaan </h5>
-                        <p>`+element['deskripsi']+`</p>
+                        <h5>Pertanyaan `+(index+1)+`</h5>
+                        <p>`+item['pertanyaan']+`</p>
                         <div class="" style="display: flex; flex-wrap: wrap; justify-content: end;">
                             <button class="btn btn-outline-info">Mark as done</button>
                         </div>
