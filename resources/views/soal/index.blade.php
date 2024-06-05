@@ -19,10 +19,12 @@
 {{-- alert message --}}
 <div class="d-flex justify-content-center align-items-center w-100" style="min-height: 100vh; margin-top: 5vh;">
     @if (session('message'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <div class="" style="display: flex; flex-wrap: wrap; justify-content: cemter;">
+        <div class="alert alert-success alert-dismissible fade show" role="alert" style="width: 99%; max-width: 800px;">
             {{ session('message') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
+    </div>
     @endif
     <h1 class="text-center mb-3" style="font-size: 2em; font-weight: bold;">DAFTAR PERTANYAAN SOAL</h1>
     <div class="filter my-3" style="width: 99%; max-width: 800px; display: flex; flex-wrap: wrap; justify-content: end;">
