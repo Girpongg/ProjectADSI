@@ -3,7 +3,7 @@
 @section('content')
 <div class="" style="display: flex; justify-content: center; width:100%;">
     <div class="" style="width: 80%; min-width:250px;">
-        <button class="btn btn-secondary mt-2"><i class="mr-2 fa fa-caret-left"></i>Back</button>
+        <a href="{{ url()->previous() }}"><button class="btn btn-secondary mt-2"><i class="mr-2 fa fa-caret-left"></i>Back</button></a>
         <h1 style="font-weight: bold;">{{ $pertanyaan->pertanyaan }}</h1>
         <form action="{{ route('soal.store') }}" method="POST"
             enctype="multipart/form-data">
