@@ -17,6 +17,9 @@
     <script src="https://cdn.tailwindcss.com/3.3.0"></script>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.11.1/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
+
+    {{-- font awesome --}}
+    <script src="https://kit.fontawesome.com/bf01bc6a3e.js" crossorigin="anonymous"></script>
     <script>
         tailwind.config = {
             darkMode: "class",

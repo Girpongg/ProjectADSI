@@ -67,7 +67,7 @@ class SoalController extends Controller
      */
     public function show(string $id)
     {
-        dd($id, request()->all());
+        // dd($id, request()->all());
         $soals = Pertanyaan::
         join('jawaban', 'soal.id', '=', 'jawaban.soal_id')
         ->where('user_id', auth()->user()->id)
@@ -91,6 +91,18 @@ class SoalController extends Controller
     public function edit(string $id)
     {
         //
+        // dd($id, request()->all());
+        return view('soal.index');
+    }
+    public function edit2(string $id)
+    {
+        //
+        // dd($id, request()->all());
+        $soalnya = Pertanyaan::find($id);
+        return view('soal.uploadjawaban', [
+            'pertanyaan' => $soalnya
+        ]);
+        return view('soal.uploadjawaban');
     }
 
     /**
