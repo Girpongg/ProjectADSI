@@ -14,7 +14,7 @@
     </style>
 @endsection
 @section('content')
-    <div class="flex flex-col w-full py-8 rounded-lg shadow-xl items-center justify-center mb-10 px-8">
+    <div class="flex flex-col w-full py-8 rounded-lg items-center justify-center mb-10 px-8">
         <div class="flex flex-col w-full py-8 rounded-lg shadow-xl items-center justify-center mb-10 px-8">
             <div class="relative w-full mb-3">
                 <input type="text"

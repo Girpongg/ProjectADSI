@@ -6,17 +6,26 @@
             transform: translateY(-0.9rem) scale(0.8);
             color: var(--primary-color, #000);
         }
+        #title {
+            margin-top: 3%;
+            text-align: center;
+            font-size: 40px;
+            font-weight: bold;
+        }
     </style>
 @endsection
 
 @section('content')
-    <div class="flex flex-col w-full py-8 rounded-lg shadow-xl items-center justify-center mb-10">
-        <button class="bg-blue-500 p-3 rounded-lg text-white mr-10 hover:bg-blue-900" data-te-toggle="modal"
+    <div>
+        <h1 id="title">TAMBAH KELAS</h1>
+    </div>
+    <div class="flex flex-col w-full py-8 rounded-lg items-center justify-center mt-3 pr-20 pl-20">
+        <button class="bg-blue-500 p-3 rounded-lg text-white hover:bg-blue-900" data-te-toggle="modal"
             data-te-target="#Modal">Add Class</button>
 
-        <div class="overflow-x-auto">
-            <table class="table">
-                <thead>
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-full mt-10">
+            <table class="text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 table">
+                <thead class="text-xs text-gray-700 uppercase">
                     <tr>
                         <th></th>
                         <th>Days</th>
@@ -29,7 +38,7 @@
                 </thead>
                 <tbody>
                     @foreach ($datajson as $index => $item)
-                        <tr>
+                        <tr class="bg-white dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $item['hari'] }}</td>
                             <td>{{ $item['guru'] }}</td>
@@ -81,8 +90,8 @@
                             class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                             id="hari" name="hari" placeholder="hari" />
                         <label for="hari"
-                            class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary">Event
-                            hari
+                            class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary">
+                            Hari
                         </label>
                     </div>
                     <div class="relative mb-3">
