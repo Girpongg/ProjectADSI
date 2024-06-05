@@ -102,15 +102,27 @@
                         // console.log(item);
                         // console.log(index);
                         // console.log(arr);
-                        $('.bodywrap').append(`
-                        <div class="mb-2" style="width: 99%; max-width: 800px; border-radius: 20px; border: 2px solid rgba(0,0,0,.1); padding: 15px 30px;">
-                            <h5>Pertanyaan `+(index+1)+`</h5>
-                            <p>`+nl2br(item['pertanyaan'])+`</p>
-                            <div class="" style="display: flex; flex-wrap: wrap; justify-content: end;">
-                                <button class="btn btn-outline-info">Mark as done</button>
+                        if(item['jawaban']!=null){
+                            $('.bodywrap').append(`
+                            <div id="soalcard`+(index+1)+`" data-idsoal="`+(item['id'])+`"  class="mb-2" style="width: 99%; max-width: 800px; border-radius: 20px; border: 2px solid rgba(0,0,0,.1); padding: 15px 30px;">
+                                <h5>Pertanyaan `+(index+1)+`</h5>
+                                <p>`+nl2br(item['pertanyaan'])+`</p>
+                                <div class="" style="display: flex; flex-wrap: wrap; justify-content: end;">
+                                <button class="btn btn-success"><i class="fa fa-check"></i>Done</button>
+                                </div>
                             </div>
-                        </div>
-                        `);
+                            `);
+                        }else{
+                            $('.bodywrap').append(`
+                            <div id="soalcard`+(index+1)+`" data-idsoal="`+(item['id'])+`"  class="mb-2" style="width: 99%; max-width: 800px; border-radius: 20px; border: 2px solid rgba(0,0,0,.1); padding: 15px 30px;">
+                                <h5>Pertanyaan `+(index+1)+`</h5>
+                                <p>`+nl2br(item['pertanyaan'])+`</p>
+                                <div class="" style="display: flex; flex-wrap: wrap; justify-content: end;">
+                                    <button class="btn btn-outline-warning">Mark as done</button>
+                                </div>
+                            </div>
+                            `);
+                        }
                     }
                 }
             });
