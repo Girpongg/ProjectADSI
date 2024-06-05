@@ -19,7 +19,7 @@
 {{-- alert message --}}
 <div class="d-flex justify-content-center align-items-center w-100" style="min-height: 100vh; margin-top: 5vh;">
     @if (session('message'))
-    <div class="" style="display: flex; flex-wrap: wrap; justify-content: cemter;">
+    <div class="" style="display: flex; flex-wrap: wrap; justify-content: center; width:100%;">
         <div class="alert alert-success alert-dismissible fade show" role="alert" style="width: 99%; max-width: 800px;">
             {{ session('message') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
