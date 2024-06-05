@@ -3,14 +3,14 @@
 @section('content')
 <div class="" style="display: flex; justify-content: center; width:100%;">
     <div class="" style="width: 80%; min-width:250px;">
-        <h1>{{ $pertanyaan->pertanyaan }}</h1>
+        <button class="btn btn-secondary mt-2"><i class="mr-2 fa fa-caret-left"></i>Back</button>
+        <h1 style="font-weight: bold;">{{ $pertanyaan->pertanyaan }}</h1>
         <form action="{{ route('soal.store') }}" method="POST"
             enctype="multipart/form-data">
             @csrf
             @method('POST')
             <label for="upload-file"
-            class="block text-sm font-medium leading-6 text-gray-900">Upload
-            File</label>
+            class="block text-sm font-medium leading-6 text-gray-900">Upload File Jawaban</label>
             <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                 <div class="text-center">
                     <div class="mt-4 flex text-sm leading-6 text-gray-600">
