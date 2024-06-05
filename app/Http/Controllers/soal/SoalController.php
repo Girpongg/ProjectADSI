@@ -5,6 +5,7 @@ namespace App\Http\Controllers\soal;
 use App\Http\Controllers\Controller;
 use App\Models\Pertanyaan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SoalController extends Controller
 {
@@ -36,9 +37,12 @@ class SoalController extends Controller
             $soals = Pertanyaan::where('idmapel', $mapel)->get();
             return response()->json($soals);
         }
+
+        $mapels = DB::table('mata_pelajarans')->get();
         $soals = $soals = Pertanyaan::get();
         return view('soal.index', [
-            'soals' => $soals
+            'soals' => $soals,
+            'mapels' => $mapels
         ]);
     }
 

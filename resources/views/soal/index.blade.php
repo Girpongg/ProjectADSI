@@ -15,9 +15,9 @@
     <div class="filter my-3" style="width: 99%; max-width: 800px; display: flex; flex-wrap: wrap; justify-content: end;">
         <select class="form-control select select-tipe" name="mapel" id="mapel" style="border: 1px solid rgba(0,0,0,.2);">
             <option value="">All</option>
-            <option value="1">Fisika</option>
-            <option value="2">Kimia</option>
-            <option value="3">Matematika</option> 
+            @foreach ($mapels as $item)
+                <option value="{{ $item->id }}">{{ $item->nama }}</option>
+            @endforeach
         </select>
     </div>
     <div class="bodywrap w-100" style="display: flex; flex-wrap: wrap; justify-content: center;">
