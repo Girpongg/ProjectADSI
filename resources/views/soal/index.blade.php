@@ -6,6 +6,11 @@
     body{
         width: 100%;
     }
+
+    .cardsoall{
+        background: white;
+        filter: drop-shadow(0 0 0.4rem rgba(0,0,0,.1));
+    }
 </style>
 @endsection
 
@@ -24,7 +29,7 @@
     
     <div class="bodywrap w-100" style="display: flex; flex-wrap: wrap; justify-content: center;">
         @foreach ($soals as $key => $item)
-            <div id="soalcard{{ ($key+1) }}" data-idsoal="{{ $item->id }}" class="mb-2" style="width: 99%; max-width: 800px; border-radius: 20px; border: 2px solid rgba(0,0,0,.1); padding: 15px 30px;">
+            <div id="soalcard{{ ($key+1) }}" data-idsoal="{{ $item->id }}" class="mb-2 cardsoall" style="width: 99%; max-width: 800px; border-radius: 20px; border: 2px solid rgba(0,0,0,.1); padding: 15px 30px;">
                 <h5 style="font-weight: bold">Pertanyaan {{ $key+1 }}</h5>
                 <p><?= nl2br($item->pertanyaan); ?></p>
                 
@@ -104,7 +109,7 @@
                         // console.log(arr);
                         if(item['jawaban']!=null){
                             $('.bodywrap').append(`
-                            <div id="soalcard`+(index+1)+`" data-idsoal="`+(item['id'])+`"  class="mb-2" style="width: 99%; max-width: 800px; border-radius: 20px; border: 2px solid rgba(0,0,0,.1); padding: 15px 30px;">
+                            <div id="soalcard`+(index+1)+`" data-idsoal="`+(item['id'])+`"  class="mb-2 cardsoall" style="width: 99%; max-width: 800px; border-radius: 20px; border: 2px solid rgba(0,0,0,.1); padding: 15px 30px;">
                                 <h5 style="font-weight: bold">Pertanyaan `+(index+1)+`</h5>
                                 <p>`+nl2br(item['pertanyaan'])+`</p>
                                 <div class="" style="display: flex; flex-wrap: wrap; justify-content: end;">
@@ -114,7 +119,7 @@
                             `);
                         }else{
                             $('.bodywrap').append(`
-                            <div id="soalcard`+(index+1)+`" data-idsoal="`+(item['id'])+`"  class="mb-2" style="width: 99%; max-width: 800px; border-radius: 20px; border: 2px solid rgba(0,0,0,.1); padding: 15px 30px;">
+                            <div id="soalcard`+(index+1)+`" data-idsoal="`+(item['id'])+`"  class="mb-2 cardsoall" style="width: 99%; max-width: 800px; border-radius: 20px; border: 2px solid rgba(0,0,0,.1); padding: 15px 30px;">
                                 <h5 style="font-weight: bold">Pertanyaan `+(index+1)+`</h5>
                                 <p>`+nl2br(item['pertanyaan'])+`</p>
                                 <div class="" style="display: flex; flex-wrap: wrap; justify-content: end;">
