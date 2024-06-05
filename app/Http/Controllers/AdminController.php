@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Guru;
 use App\Models\User;
 use App\Models\Murid;
+use App\Models\Pertanyaan;
 use App\Models\RuangKelas;
 use App\Models\DetailKelas;
 use App\Models\JadwalKelas;
@@ -17,11 +18,13 @@ use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
-    function login(){
+    function login()
+    {
         return view('login');
     }
 
-    function postlogin(){
+    function postlogin()
+    {
         $data = request()->only(['email', 'password']);
         $valid = validator::make(
             $data,
@@ -288,7 +291,6 @@ class AdminController extends Controller
         $s = UploadModul::create($data);
         return response()->json(['success' => true, 'message' => 'Data has been saved', 'data' => $s]);
     }
-
     public function deleteModul($id)
     {
         $upload = UploadModul::find($id);
@@ -296,5 +298,56 @@ class AdminController extends Controller
             $s = $upload->delete();
             return redirect()->route('upload')->with('success', 'Data has been deleted');
         }
+    }
+
+    public function pertanyaan()
+    {
+        $pertanyaan = Pertanyaan::with('murid')->get();
+        $data = [
+            'title' => 'Pertanyaan',
+            'pertanyaan' => $pertanyaan,
+        ];
+        return view('pertanyaan', $data);
+    }
+
+    public function detailpertanyaan($id)
+    {
+        $pertanyaan = Pertanyaan::with('murid')->find($id);
+        $data = [
+            'title' => 'Detail Pertanyaan',
+            'pertanyaan' => $pertanyaan,
+        ];
+        return view('detailpertanyaan', $data);
+    }
+
+    public function jawaban($id)
+    {
+        $file = request()->file('jawaban');
+        $data = ['jawaban' => $file];
+        $valid = Validator::make(
+            $data,
+            [
+                'jawaban' => 'required|file|mimes:pdf,doc,docx|max:10240',
+            ],
+            [
+                'jawaban.required' => 'Jawaban harus diisi',
+                'jawaban.file' => 'Jawaban harus berupa file',
+                'jawaban.mimes' => 'Jawaban harus berupa file pdf, doc, docx',
+            ],
+        );
+        if ($valid->fails()) {
+            $errors = $valid->errors()->all();
+            return response()->json(['success' => false, 'message' => implode(', ', $errors)]);
+        }
+        $file = $data['jawaban'];
+        $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+        $extension = $file->getClientOriginalExtension();
+        $fileNameToStore = $originalName . '.' . $extension;
+        $filePath = $file->storeAs('Jawaban', $fileNameToStore, 'public');
+        $data['jawaban'] = $filePath;
+
+        $pertanyaan = Pertanyaan::find($id);
+        $pertanyaan->update($data);
+        return redirect()->route('pertanyaan')->with('success', 'Jawaban berhasil diupload');
     }
 }

@@ -39,15 +39,15 @@
         });
     </script>
     <style>
-            ::-webkit-scrollbar {
-                width: 4px;
-                background-color: #ffffff;
-            }
+        ::-webkit-scrollbar {
+            width: 4px;
+            background-color: #ffffff;
+        }
 
-            ::-webkit-scrollbar-thumb {
-                background-color: lightgray;
-                box-shadow: 6px 6px 0px #d8d800;
-            }
+        ::-webkit-scrollbar-thumb {
+            background-color: lightgray;
+            box-shadow: 6px 6px 0px #d8d800;
+        }
     </style>
     @yield('style')
 </head>
@@ -68,17 +68,17 @@
                             Iuran</a>
                     </div>
                     <div class="h-full flex items-center">
-                        <a href="/upload"
+                        <a href="{{ route('pertanyaan') }}"
                             class="text-blue-900 hover:bg-yellow-400 hover:text-blue-900 px-3 py-2 rounded-full text-m font-medium">
                             Diskusi Tanya Jawab Soal</a>
                     </div>
                     <div class="h-full flex items-center">
-                        <a href="/upload"
+                        <a href="{{ route('upload') }}"
                             class="text-blue-900 hover:bg-yellow-400 hover:text-blue-900 px-3 py-2 rounded-full text-m font-medium">Upload
                             Latihan Soal</a>
                     </div>
                     <div class="h-full flex items-center">
-                        <a href="/JadwalKelas"
+                        <a href="{{ route('JadwalKelas') }}"
                             class="text-blue-900 hover:bg-yellow-400 hover:text-blue-900 px-3 py-2 rounded-full text-m font-medium">Tambah
                             Kelas</a>
                     </div>

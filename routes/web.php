@@ -20,7 +20,10 @@ Route::get('/home', function () {
 })->name('home');
 Route::get('/login',[AdminController::class, 'login'])->name('login');
 Route::post('/postlogin',[AdminController::class, 'postlogin'])->name('postlogin');
+Route::get('/detailpertanyaan/{id}',[AdminController::class, 'detailpertanyaan'])->name('detailpertanyaan');
+Route::put('/jawaban/{id}',[AdminController::class, 'jawaban'])->name('jawaban');
 
+Route::get('/pertanyaan', [AdminController::class, 'pertanyaan'])->name('pertanyaan');
 
 Route::post('/uploads', [AdminController::class, 'uploadPost'])->name('modul.upload');
 Route::delete('/delete{id}', [AdminController::class, 'deleteModul'])->name('modul.delete');
