@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\soal;
 
 use App\Http\Controllers\Controller;
+use App\Models\MataPelajaran;
 use App\Models\Pertanyaan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -35,7 +36,8 @@ class SoalController extends Controller
             // dd(request()->all());
             $mapel = request()->mapel;
             if($mapel == '0'){
-                $mapels = DB::table('mata_pelajarans')->get();
+                // $mapels = DB::table('mata_pelajarans')->get();
+                $mapels = MataPelajaran::get();
                 $soals = $soals = Pertanyaan::get();
                 return response()->json($soals);
             }
