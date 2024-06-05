@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('jawaban')->nullable();
             $table->integer('idmapel');
             $table->foreign('id_murid')->references('id')->on('murids')->onDelete('cascade');
+            $table->foreign('idmapel')->references('id')->on('mata_pelajarans')->onDelete('cascade');
             $table->timestamps();
         });
     }
