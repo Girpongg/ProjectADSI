@@ -85,7 +85,8 @@ class SoalController extends Controller
         $updatedjawaban = Pertanyaan::find($request->id);
         $updatedjawaban->jawaban = $filePath;
         $updatedjawaban->save();
-        return response()->json(['success' => true, 'message' => 'Data has been saved', 'data' => $updatedjawaban]);
+        // return response()->json(['success' => true, 'message' => 'Data has been saved', 'data' => $updatedjawaban]);
+        return redirect()->route('soal.index');
     }
 
     /**
