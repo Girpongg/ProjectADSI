@@ -2,10 +2,10 @@
 
 @section('content')
     <h1>{{ $pertanyaan->pertanyaan }}</h1>
-    <form action="{{ route('soal.update', $pertanyaan->id) }}" method="POST"
+    <form action="{{ route('soal.store') }}" method="POST"
         enctype="multipart/form-data">
         @csrf
-        @method('PUT')
+        @method('POST')
         <label for="upload-file"
         class="block text-sm font-medium leading-6 text-gray-900">Upload
         File</label>
@@ -16,6 +16,7 @@
                         class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
                         <input id="jawaban" name="jawaban" type="file">
                     </label>
+                    <input hidden name="id" type="text" value="{{ $id }}">
                 </div>
                 <p class="text-xs leading-5 text-gray-600">PDF up to 10MB</p>
             </div>

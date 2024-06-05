@@ -60,6 +60,27 @@ class SoalController extends Controller
     public function store(Request $request)
     {
         //
+        // dd($request->all());
+        $request->validate([
+            'id' => 'required',
+            'jawaban' => 'required|mimes:pdf|max:10000'
+        ]);
+
+        // $file = $request->file('file');
+        // $filename = time() . '.' . $file->getClientOriginalExtension();
+        // $file->move('uploads', $filename);
+        
+        $file = $request->jawaban;
+        $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+        $extension = $file->getClientOriginalExtension();
+        $fileNameToStore = $originalName . '.' . $extension;
+        $filePath = $file->storeAs('JawabanFiles', $fileNameToStore, 'public');
+        // $request->jawaban = $filePath;
+
+        $updatedjawaban = Pertanyaan::find($request->id);
+        $updatedjawaban->jawaban = $filePath;
+        $updatedjawaban->save();
+        return response()->json(['success' => true, 'message' => 'Data has been saved', 'data' => $updatedjawaban]);
     }
 
     /**
@@ -100,7 +121,8 @@ class SoalController extends Controller
         // dd($id, request()->all());
         $soalnya = Pertanyaan::find($id);
         return view('soal.uploadjawaban', [
-            'pertanyaan' => $soalnya
+            'pertanyaan' => $soalnya,
+            'id' => $id
         ]);
         return view('soal.uploadjawaban');
     }
@@ -111,6 +133,7 @@ class SoalController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        dd($id, $request->all());
     }
 
     /**
