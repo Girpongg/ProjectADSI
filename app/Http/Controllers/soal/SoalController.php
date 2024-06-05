@@ -34,6 +34,11 @@ class SoalController extends Controller
         if(request() -> has('mapel')){
             // dd(request()->all());
             $mapel = request()->mapel;
+            if($mapel == '0'){
+                $mapels = DB::table('mata_pelajarans')->get();
+                $soals = $soals = Pertanyaan::get();
+                return response()->json($soals);
+            }
             $soals = Pertanyaan::where('idmapel', $mapel)->get();
             return response()->json($soals);
         }

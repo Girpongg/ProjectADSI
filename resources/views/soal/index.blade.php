@@ -15,7 +15,7 @@
     <h1 class="text-center mb-3" style="font-size: 2em; font-weight: bold;">DAFTAR PERTANYAAN SOAL</h1>
     <div class="filter my-3" style="width: 99%; max-width: 800px; display: flex; flex-wrap: wrap; justify-content: end;">
         <select class="form-control select select-tipe" name="mapel" id="mapel" style="border: 1px solid rgba(0,0,0,.2);">
-            <option value="">All</option>
+            <option value="0">All</option>
             @foreach ($mapels as $item)
                 <option value="{{ $item->id }}">{{ $item->nama }}</option>
             @endforeach
