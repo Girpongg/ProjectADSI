@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Guru;
+use App\Models\User;
 use App\Models\Murid;
 use App\Models\RuangKelas;
 use App\Models\DetailKelas;
@@ -16,6 +17,33 @@ use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
+    function login(){
+        return view('login');
+    }
+
+    function postlogin(){
+        $data = request()->only(['email', 'password']);
+        $valid = validator::make(
+            $data,
+            [
+                'email' => 'required',
+                'password' => 'required',
+            ],
+            [
+                'email.required' => 'Email harus diisi',
+                'password.required' => 'Password harus diisi',
+            ],
+        );
+        if ($valid->fails()) {
+            $errors = $valid->errors()->all();
+            return response()->json(['success' => false, 'message' => implode(', ', $errors)]);
+        }
+        $user = User::where('email', $data['email'])->first();
+        if ($user && $user->password == $data['password']) {
+            return redirect()->route('home');
+        }
+        return back()->with('error', 'Email atau Password salah');
+    }
     function jadwalKelas()
     {
         $matapelajaran = MataPelajaran::all(['id', 'nama'])
@@ -136,12 +164,14 @@ class AdminController extends Controller
                 ->select('id')
                 ->from('jadwal_kelas')
                 ->where('id_pelajaran', $data->id_pelajaran);
-        })->pluck('murid_id')->toArray();
-
+        })
+            ->pluck('murid_id')
+            ->toArray();
 
         $unregisteredStudents = Murid::with('tahunAngkatan')
             ->whereNotIn('id', $registeredStudentIds)
             ->where('id_angkatan', $data->id_angkatan)
+            ->where('status', 1)
             ->get();
         return view('DetailKelas', [
             'event' => $data,
@@ -178,13 +208,16 @@ class AdminController extends Controller
                 'id_angkatan.required' => 'Angkatan harus diisi',
             ],
         );
+        if ($valid->fails()) {
+            $errors = $valid->errors()->all();
+            return response()->json(['success' => false, 'message' => implode(', ', $errors)]);
+        }
         $s = JadwalKelas::find($id);
         $s->update($data);
         return response()->json(['success' => true, 'message' => 'Data has been updated', 'data' => $s]);
     }
 
-
-    public function postmurid(Request $request,$id)
+    public function postmurid(Request $request, $id)
     {
         foreach ($request->user_id as $murid_id) {
             DetailKelas::create([
@@ -212,13 +245,13 @@ class AdminController extends Controller
             ->toArray();
 
         $upload = UploadModul::with(['pelajaran', 'kelas'])->get();
-        $data=[
+        $data = [
             'title' => 'Upload Latihan Soal',
             'matapelajaran' => $matapelajaran,
             'angkatan' => $angkatan,
             'upload' => $upload,
         ];
-        return view('UploadLatihanSoal',$data);
+        return view('UploadLatihanSoal', $data);
     }
 
     public function uploadPost()
@@ -237,25 +270,25 @@ class AdminController extends Controller
                 'id_angkatan.required' => 'Kelas harus diisi',
                 'materipelajaran.required' => 'Materi Pelajaran harus diisi',
                 'file.required' => 'File harus diisi',
-            ]
+            ],
         );
-    
+
         if ($valid->fails()) {
             $errors = $valid->errors()->all();
             return response()->json(['success' => false, 'message' => implode(', ', $errors)]);
         }
-    
+
         $file = $data['file'];
         $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
         $extension = $file->getClientOriginalExtension();
         $fileNameToStore = $originalName . '.' . $extension;
         $filePath = $file->storeAs('MateriPelajaranFiles', $fileNameToStore, 'public');
         $data['file'] = $filePath;
-    
+
         $s = UploadModul::create($data);
         return response()->json(['success' => true, 'message' => 'Data has been saved', 'data' => $s]);
     }
-    
+
     public function deleteModul($id)
     {
         $upload = UploadModul::find($id);

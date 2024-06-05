@@ -122,7 +122,7 @@
                                                     {{ $item->materipelajaran }}
                                                 </td>
                                                 <td class="px-6 py-4">
-                                                    {{basename($item->file)}}
+                                                    {{ substr(basename($item->file)) }}.{{ pathinfo($item->file, PATHINFO_EXTENSION) }}
                                                 </td>
                                                 <td>
                                                     <a href="{{ asset('storage/' . $item->file) }}"
@@ -186,7 +186,7 @@
                                     if (result.isConfirmed) {
                                         window.location.reload();
                                     } else {
-                                        window.location.href = '/';
+                                        window.location.href = '/home';
                                     }
                                 });
                             } else {
