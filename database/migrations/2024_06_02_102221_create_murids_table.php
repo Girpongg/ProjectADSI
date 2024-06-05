@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama'); 
             $table->string('alamat');
+            $table->boolean('status')->comment('0: Tidak Aktif, 1: Aktif');
             $table->unsignedBigInteger('id_angkatan');
             $table->foreign('id_angkatan')->references('id')->on('tahun_angkatans');
             $table->timestamps();

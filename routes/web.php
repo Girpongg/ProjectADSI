@@ -15,12 +15,15 @@ use App\Http\Controllers\AdminController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/home', function () {
     return view('homepage');
-});
+})->name('home');
+Route::get('/login',[AdminController::class, 'login'])->name('login');
+Route::post('/postlogin',[AdminController::class, 'postlogin'])->name('postlogin');
+
+
 Route::post('/uploads', [AdminController::class, 'uploadPost'])->name('modul.upload');
 Route::delete('/delete{id}', [AdminController::class, 'deleteModul'])->name('modul.delete');
-
 
 Route::get('/JadwalKelas', [AdminController::class, 'jadwalKelas'])->name('JadwalKelas');
 Route::post('/store', [AdminController::class, 'store'])->name('store');
