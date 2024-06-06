@@ -36,7 +36,7 @@
         </select>
     </div>
     
-    <div class="bodywrap w-100" style="display: flex; flex-wrap: wrap; justify-content: center;">
+    <div class="bodywrap w-100 pb-5" style="display: flex; flex-wrap: wrap; justify-content: center;">
         @if (count($soals)==0)
             <div class="alert alert-warning" style="width: 99%; max-width: 800px;">
                 Tidak ada soal
