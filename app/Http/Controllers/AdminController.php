@@ -352,9 +352,10 @@ class AdminController extends Controller
 
     public function iuran()
     {
-        $iuran = Iuran::with('murid')->where('status', 0)->sortBy('murid_id')
-        ->toArray();
-        $iuran['tanggal'] = Carbon::now()->format('Y-m-d');
+        $iuran = Iuran::with('murid')->where('status', 0)->get();
+        $iuran->each(function ($item) {
+            $item->tanggal = Carbon::parse($item->tanggal)->format('M Y');
+        });
         $data = [
             'title' => 'Iuran',
             'murid' => $iuran,

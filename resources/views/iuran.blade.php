@@ -32,7 +32,7 @@
                             <td>{{$iuran->tanggal}}</td>
                             <td>{{$iuran->nominal}}</td>
                             <td>
-                                <input type="checkbox" name="user_id[]">
+                                <input type="checkbox" name="user_id[]" value="{{$iuran->id}}">
                             </td>
                         </tr>
                     @endforeach
