@@ -29,7 +29,7 @@ class SoalController extends Controller
         }
 
         $mapels = DB::table('mata_pelajarans')->get();
-        $soals = $soals = Pertanyaan::get();
+        $soals = Pertanyaan::get();
         return view('soal.index', [
             'soals' => $soals,
             'mapels' => $mapels
@@ -80,13 +80,6 @@ class SoalController extends Controller
     public function show(string $id)
     {
         // dd($id, request()->all());
-        $soals = Pertanyaan::
-        join('jawaban', 'soal.id', '=', 'jawaban.soal_id')
-        ->where('user_id', auth()->user()->id)
-        ->get();
-        return view('soal.index', [
-            'soals' => $soals
-        ]);
         //
         // dd($id,request()->all());
         // $soals = Soal::
@@ -104,7 +97,6 @@ class SoalController extends Controller
     {
         //
         // dd($id, request()->all());
-        return view('soal.index');
     }
     public function edit2(string $id)
     {
@@ -124,7 +116,6 @@ class SoalController extends Controller
     public function update(Request $request, string $id)
     {
         //
-        dd($id, $request->all());
     }
 
     /**
