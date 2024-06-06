@@ -66,7 +66,7 @@
                 </div>
                 <div class="flex h-full items-center justify-center space-x-4">
                     <div class="h-full flex items-center">
-                        <a href="/upload"
+                        <a href="{{route('iuran')}}"
                             class="text-blue-900 hover:bg-yellow-400 hover:text-blue-900 px-3 py-2 rounded-full text-m font-medium">
                             Iuran</a>
                     </div>

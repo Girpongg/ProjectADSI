@@ -15,7 +15,6 @@
 @endsection
 
 @section('content')
-
 {{-- alert message --}}
 <div class="d-flex justify-content-center align-items-center w-100" style="min-height: 100vh; margin-top: 5vh;">
     @if (session('message'))
@@ -70,9 +69,7 @@
         return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
     }
     $(document).ready(function(){
-        // $(window).load(function() {
-        //     $('#exampleModal').modal('hide');
-        // });
+
         $(document).on('click', '[id^="soalcard"]', function(){
             $idsoal = $(this).data('idsoal');
             // $('#inputhiddenmodal').val($idsoal);

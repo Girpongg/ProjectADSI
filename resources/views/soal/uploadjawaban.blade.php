@@ -4,7 +4,7 @@
 <div class="" style="display: flex; justify-content: center; width:100%;">
     <div class="" style="width: 80%; min-width:250px;">
         <a href="{{ url()->previous() }}"><button class="btn btn-secondary mt-2"><i class="mr-2 fa fa-caret-left"></i>Back</button></a>
-        <h1 style="font-weight: bold;">{{ $pertanyaan->pertanyaan }}</h1>
+        <h1 style="font-weight: bold;"><?= nl2br($pertanyaan->pertanyaan); ?></h1>
         <form action="{{ route('soal.store') }}" method="POST"
             enctype="multipart/form-data">
             @csrf
@@ -34,4 +34,14 @@
         </form>
     </div>
 </div>
+<script>
+    
+    function nl2br (str, is_xhtml) {
+        if (typeof str === 'undefined' || str === null) {
+            return '';
+        }
+        var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
+        return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
+    }
+</script>
 @endsection

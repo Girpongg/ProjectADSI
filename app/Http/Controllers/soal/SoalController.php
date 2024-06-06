@@ -16,10 +16,8 @@ class SoalController extends Controller
     public function index()
     {
         if(request() -> has('mapel')){
-            // dd(request()->all());
             $mapel = request()->mapel;
             if($mapel == '0'){
-                // $mapels = DB::table('mata_pelajarans')->get();
                 $mapels = MataPelajaran::get();
                 $soals = Pertanyaan::get();
                 return response()->json($soals);
@@ -36,17 +34,6 @@ class SoalController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         //
@@ -55,10 +42,6 @@ class SoalController extends Controller
             'id' => 'required',
             'jawaban' => 'required|mimes:pdf|max:10000'
         ]);
-
-        // $file = $request->file('file');
-        // $filename = time() . '.' . $file->getClientOriginalExtension();
-        // $file->move('uploads', $filename);
         
         $file = $request->jawaban;
         $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
@@ -100,14 +83,12 @@ class SoalController extends Controller
     }
     public function edit2(string $id)
     {
-        //
-        // dd($id, request()->all());
         $soalnya = Pertanyaan::find($id);
         return view('soal.uploadjawaban', [
             'pertanyaan' => $soalnya,
             'id' => $id
         ]);
-        return view('soal.uploadjawaban');
+        // return view('soal.uploadjawaban');
     }
 
     /**

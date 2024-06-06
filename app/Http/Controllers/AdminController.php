@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Guru;
 use App\Models\User;
+use App\Models\Iuran;
 use App\Models\Murid;
 use App\Models\Pertanyaan;
 use App\Models\RuangKelas;
@@ -114,7 +115,6 @@ class AdminController extends Controller
                 'id_angkatan.required' => 'Angkatan harus diisi',
             ],
         );
-        // BR1: Guru tidak boleh mengajar lebih dari 1 kelas pada hari yang sama
         if ($valid->fails()) {
             $errors = $valid->errors()->all();
             return response()->json(['success' => false, 'message' => implode(', ', $errors)]);
@@ -345,9 +345,21 @@ class AdminController extends Controller
         $fileNameToStore = $originalName . '.' . $extension;
         $filePath = $file->storeAs('Jawaban', $fileNameToStore, 'public');
         $data['jawaban'] = $filePath;
-
         $pertanyaan = Pertanyaan::find($id);
         $pertanyaan->update($data);
         return redirect()->route('pertanyaan')->with('success', 'Jawaban berhasil diupload');
+    }
+
+    public function iuran()
+    {
+        $iuran = Iuran::with('murid')->where('status', 0)->get();
+        $iuran->each(function ($item) {
+            $item->tanggal = Carbon::parse($item->tanggal)->format('M Y');
+        });
+        $data = [
+            'title' => 'Iuran',
+            'murid' => $iuran,
+        ];
+        return view('iuran', $data);
     }
 }

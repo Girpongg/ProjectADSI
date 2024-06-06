@@ -44,6 +44,4 @@ Route::prefix('/soal')->name('soal.')->namespace('App\Http\Controllers\soal')->g
     Route::resource('/', 'SoalController');
 });
 
-// Route::prefix('/global')->name('global.')->group(function () {
-//     Route::get('/file/preview', 'FileController@GetPreview')->name('file.preview');
-// });
+Route::get('/iuran',[AdminController::class, 'iuran'])->name('iuran');

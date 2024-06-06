@@ -18,35 +18,43 @@ class PertanyaanSeeder extends Seeder
             [
                 'id_murid' => 1,
                 'pertanyaan' => 'Apakah benar bahwa PHP adalah bahasa pemrograman terbaik?',
+                'idmapel' => 1,
             ],
             [
                 'id_murid' => 2,
                 'pertanyaan' => 'Apakah benar bahwa PHP adalah bahasa pemrograman terbaik?',
+                'idmapel' => 2,
             ],
             [
                 'id_murid' => 1,
                 'pertanyaan' => 'Apakah benar bahwa PHP adalah bahasa pemrograman terbaik?',
+                'idmapel' => 3,
             ],
             [
                 'id_murid' => 4,
                 'pertanyaan' => 'Apakah benar bahwa PHP adalah bahasa pemrograman terbaik?',
+                'idmapel' => 4,
             ],
             [
                 'id_murid' => 5,
                 'pertanyaan' => 'Apakah benar bahwa PHP adalah bahasa pemrograman terbaik?',
+                'idmapel' => 1,
             ],
             [
                 'id_murid' => 2,
                 'pertanyaan' => 'Apakah benar bahwa PHP adalah bahasa pemrograman terbaik?',
-                'jawaban' => 'Tidak, PHP bukan bahasa pemrograman terbaik.',
+                'idmapel' => 2,
             ],
             [
                 'id_murid' => 3,
                 'pertanyaan' => 'Apakah benar bahwa PHP adalah bahasa pemrograman terbaik?',
+                'jawaban' => 'Tidak, PHP bukan bahasa pemrograman terbaik.',
+                'idmapel' => 3,
             ],
             [
                 'id_murid' => 4,
                 'pertanyaan' => 'Apakah benar bahwa PHP adalah bahasa pemrograman terbaik?',
+                'idmapel' => 4,
             ],
         ];
         foreach ($pertanyaan as $value) {
