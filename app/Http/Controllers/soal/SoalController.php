@@ -13,19 +13,6 @@ class SoalController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index2($id)
-    {
-        //
-        // dd("tes soal");
-        // dd($id,request()->all());
-        // $soals = Soal::
-        // where('user_id', request()->user->id)
-        // ->get();
-
-        // return view('soal.index', [
-        //     'soals' => $soals
-        // ]);
-    }
     public function index()
     {
         // dd(request()->all());
