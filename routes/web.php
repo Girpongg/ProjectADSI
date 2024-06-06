@@ -43,7 +43,3 @@ Route::prefix('/soal')->name('soal.')->namespace('App\Http\Controllers\soal')->g
     Route::get('edit2/{id}', 'SoalController@edit2')->name('edit2');
     Route::resource('/', 'SoalController');
 });
-
-// Route::prefix('/global')->name('global.')->group(function () {
-//     Route::get('/file/preview', 'FileController@GetPreview')->name('file.preview');
-// });

@@ -15,7 +15,6 @@
 @endsection
 
 @section('content')
-
 {{-- alert message --}}
 <div class="d-flex justify-content-center align-items-center w-100" style="min-height: 100vh; margin-top: 5vh;">
     @if (session('message'))
@@ -65,33 +64,11 @@
         return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
     }
     $(document).ready(function(){
-        // $(window).load(function() {
-        //     $('#exampleModal').modal('hide');
-        // });
+
         $(document).on('click', '[id^="soalcard"]', function(){
             $idsoal = $(this).data('idsoal');
             $('#inputhiddenmodal').val($idsoal);
-            // alert($idsoal);
-            // open modal
-            // $('#exampleModal').modal('show');
-            // Create a form dynamically
             window.location.href = '{{ route("soal.edit2", ":id") }}'.replace(':id', $idsoal);
-            // var form = $('<form>', {
-            //     'method': 'GET',
-            // });
-            
-            // // Add CSRF token to the form
-            // form.append($('<input>', {
-            //     'type': 'hidden',
-            //     'name': '_token',
-            //     'value': '{{ csrf_token() }}'
-            // }));
-            
-            // // Append the form to the body and submit it
-            // $('body').append(form);
-            // form.submit();
-
-            // $('#buttonopenmodal').click();
         });
         $(document).on('change', '#mapel', function(){
             var mapel = $('#mapel').val();
@@ -111,11 +88,6 @@
                     );
                     data.forEach(myFunction);
                     function myFunction(item, index, arr) {
-                        // arr[index] = item * 10;
-                        // console.log("DUARrrr");
-                        // console.log(item);
-                        // console.log(index);
-                        // console.log(arr);
                         if(item['jawaban']!=null){
                             $('.bodywrap').append(`
                             <div id="soalcard`+(index+1)+`" data-idsoal="`+(item['id'])+`"  class="mb-2 cardsoall" style="width: 99%; max-width: 800px; border-radius: 20px; border: 2px solid rgba(0,0,0,.1); padding: 15px 30px;">

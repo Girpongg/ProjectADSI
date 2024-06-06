@@ -114,7 +114,6 @@ class AdminController extends Controller
                 'id_angkatan.required' => 'Angkatan harus diisi',
             ],
         );
-        // BR1: Guru tidak boleh mengajar lebih dari 1 kelas pada hari yang sama
         if ($valid->fails()) {
             $errors = $valid->errors()->all();
             return response()->json(['success' => false, 'message' => implode(', ', $errors)]);
@@ -345,7 +344,6 @@ class AdminController extends Controller
         $fileNameToStore = $originalName . '.' . $extension;
         $filePath = $file->storeAs('Jawaban', $fileNameToStore, 'public');
         $data['jawaban'] = $filePath;
-
         $pertanyaan = Pertanyaan::find($id);
         $pertanyaan->update($data);
         return redirect()->route('pertanyaan')->with('success', 'Jawaban berhasil diupload');

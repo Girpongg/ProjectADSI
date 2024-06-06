@@ -10,7 +10,7 @@ class Pertanyaan extends Model
     use HasFactory;
     protected $table = 'pertanyaans';
 
-    protected $fillable = ['id_murid', 'pertanyaan', 'jawaban'];
+    protected $fillable = ['id_murid', 'pertanyaan', 'jawaban','idmapel'];
 
     public function murid()
     {

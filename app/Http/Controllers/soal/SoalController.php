@@ -13,30 +13,11 @@ class SoalController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index2($id)
-    {
-        //
-        // dd("tes soal");
-        // dd($id,request()->all());
-        // $soals = Soal::
-        // where('user_id', request()->user->id)
-        // ->get();
-
-        // return view('soal.index', [
-        //     'soals' => $soals
-        // ]);
-    }
     public function index()
     {
-        // dd(request()->all());
-        // $soals = Pertanyaan::where(true);
-        // join('jawaban', 'soal.id', '=', 'jawaban.soal_id')
-        // ->where('user_id', auth()->user()->id);
         if(request() -> has('mapel')){
-            // dd(request()->all());
             $mapel = request()->mapel;
             if($mapel == '0'){
-                // $mapels = DB::table('mata_pelajarans')->get();
                 $mapels = MataPelajaran::get();
                 $soals = $soals = Pertanyaan::get();
                 return response()->json($soals);
@@ -53,17 +34,6 @@ class SoalController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         //
@@ -72,10 +42,6 @@ class SoalController extends Controller
             'id' => 'required',
             'jawaban' => 'required|mimes:pdf|max:10000'
         ]);
-
-        // $file = $request->file('file');
-        // $filename = time() . '.' . $file->getClientOriginalExtension();
-        // $file->move('uploads', $filename);
         
         $file = $request->jawaban;
         $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
@@ -96,7 +62,6 @@ class SoalController extends Controller
      */
     public function show(string $id)
     {
-        // dd($id, request()->all());
         $soals = Pertanyaan::
         join('jawaban', 'soal.id', '=', 'jawaban.soal_id')
         ->where('user_id', auth()->user()->id)
@@ -104,14 +69,6 @@ class SoalController extends Controller
         return view('soal.index', [
             'soals' => $soals
         ]);
-        //
-        // dd($id,request()->all());
-        // $soals = Soal::
-        // where('user_id', request()->user->id)
-        // ->get();
-        // return view('soal.index', [
-        //     'soals' => $soals
-        // ]);
     }
 
     /**
@@ -119,14 +76,10 @@ class SoalController extends Controller
      */
     public function edit(string $id)
     {
-        //
-        // dd($id, request()->all());
         return view('soal.index');
     }
     public function edit2(string $id)
     {
-        //
-        // dd($id, request()->all());
         $soalnya = Pertanyaan::find($id);
         return view('soal.uploadjawaban', [
             'pertanyaan' => $soalnya,
@@ -135,20 +88,4 @@ class SoalController extends Controller
         return view('soal.uploadjawaban');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-        dd($id, $request->all());
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }
