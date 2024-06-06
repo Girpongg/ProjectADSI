@@ -40,6 +40,6 @@ Route::delete('/deletemurid/{id}', [AdminController::class, 'deletemurid'])->nam
 Route::get('/upload', [AdminController::class, 'upload'])->name('upload');
 
 Route::prefix('/soal')->name('soal.')->namespace('App\Http\Controllers\soal')->group(function(){
-    Route::get('edit2/{id}', 'SoalController@edit2')->name('edit2');
+    Route::get('edit2/{id}', 'SoalController@edit2')->name('edit2'); // buat ke page upload file
     Route::resource('/', 'SoalController');
 });
