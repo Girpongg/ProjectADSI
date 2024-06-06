@@ -26,6 +26,7 @@ class SoalController extends Controller
             return response()->json($soals);
         }
 
+        // ini gaada filter
         $mapels = DB::table('mata_pelajarans')->get();
         $soals = Pertanyaan::get();
         return view('soal.index', [
