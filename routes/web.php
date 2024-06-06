@@ -43,3 +43,5 @@ Route::prefix('/soal')->name('soal.')->namespace('App\Http\Controllers\soal')->g
     Route::get('edit2/{id}', 'SoalController@edit2')->name('edit2'); // buat ke page upload file
     Route::resource('/', 'SoalController');
 });
+
+Route::get('/iuran',[AdminController::class, 'iuran'])->name('iuran');

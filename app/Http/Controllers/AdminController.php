@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Guru;
 use App\Models\User;
+use App\Models\Iuran;
 use App\Models\Murid;
 use App\Models\Pertanyaan;
 use App\Models\RuangKelas;
@@ -347,5 +348,17 @@ class AdminController extends Controller
         $pertanyaan = Pertanyaan::find($id);
         $pertanyaan->update($data);
         return redirect()->route('pertanyaan')->with('success', 'Jawaban berhasil diupload');
+    }
+
+    public function iuran()
+    {
+        $iuran = Iuran::with('murid')->where('status', 0)->sortBy('murid_id')
+        ->toArray();
+        $iuran['tanggal'] = Carbon::now()->format('Y-m-d');
+        $data = [
+            'title' => 'Iuran',
+            'murid' => $iuran,
+        ];
+        return view('iuran', $data);
     }
 }
