@@ -116,7 +116,7 @@
                     );
                     if(data.length==0){
                         $('.bodywrap').append(`
-                        <div class="d-flex justify-content-center" style="width: 99%; max-width: 800px;">
+                        <div class="text-center" style="width: 99%; max-width: 800px;">
                             Tidak ada soal.
                         </div>
                         `);
