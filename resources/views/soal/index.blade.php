@@ -37,6 +37,11 @@
     </div>
     
     <div class="bodywrap w-100" style="display: flex; flex-wrap: wrap; justify-content: center;">
+        @if (count($soals)==0)
+            <div class="alert alert-warning" style="width: 99%; max-width: 800px;">
+                Tidak ada soal
+            </div>
+        @endif
         @foreach ($soals as $key => $item)
             <div id="soalcard{{ ($key+1) }}" data-idsoal="{{ $item->id }}" class="mb-2 cardsoall" style="width: 99%; max-width: 800px; border-radius: 20px; border: 2px solid rgba(0,0,0,.1); padding: 15px 30px;">
                 <h5 style="font-weight: bold">Pertanyaan {{ $key+1 }}</h5>
@@ -109,6 +114,13 @@
                         `
                         ` 
                     );
+                    if(data.length==0){
+                        $('.bodywrap').append(`
+                        <div class="d-flex justify-content-center" style="width: 99%; max-width: 800px;">
+                            Tidak ada soal.
+                        </div>
+                        `);
+                    }
                     data.forEach(myFunction);
                     function myFunction(item, index, arr) {
                         // arr[index] = item * 10;
