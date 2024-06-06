@@ -15,17 +15,13 @@ class SoalController extends Controller
      */
     public function index()
     {
-        // dd(request()->all());
-        // $soals = Pertanyaan::where(true);
-        // join('jawaban', 'soal.id', '=', 'jawaban.soal_id')
-        // ->where('user_id', auth()->user()->id);
         if(request() -> has('mapel')){
             // dd(request()->all());
             $mapel = request()->mapel;
             if($mapel == '0'){
                 // $mapels = DB::table('mata_pelajarans')->get();
                 $mapels = MataPelajaran::get();
-                $soals = $soals = Pertanyaan::get();
+                $soals = Pertanyaan::get();
                 return response()->json($soals);
             }
             $soals = Pertanyaan::where('idmapel', $mapel)->get();
