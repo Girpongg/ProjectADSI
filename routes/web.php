@@ -45,3 +45,4 @@ Route::prefix('/soal')->name('soal.')->namespace('App\Http\Controllers\soal')->g
 });
 
 Route::get('/iuran',[AdminController::class, 'iuran'])->name('iuran');
+Route::post('/postiuran', [AdminController::class, 'postiuran'])->name('postiuran');

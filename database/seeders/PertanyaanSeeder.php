@@ -17,43 +17,42 @@ class PertanyaanSeeder extends Seeder
         $pertanyaan = [
             [
                 'id_murid' => 1,
-                'pertanyaan' => 'Apakah benar bahwa PHP adalah bahasa pemrograman terbaik?',
+                'pertanyaan' => '2*2(5+2) berapa?',
                 'idmapel' => 1,
             ],
             [
                 'id_murid' => 2,
-                'pertanyaan' => 'Apakah benar bahwa PHP adalah bahasa pemrograman terbaik?',
+                'pertanyaan' => 'Hitung energi kinetik dari sebuah benda yang memiliki massa 2 kg dan kecepatan 5 m/s!',
                 'idmapel' => 2,
             ],
             [
                 'id_murid' => 1,
-                'pertanyaan' => 'Apakah benar bahwa PHP adalah bahasa pemrograman terbaik?',
+                'pertanyaan' => 'Apakah nama normal dari CH4?',
                 'idmapel' => 3,
             ],
             [
                 'id_murid' => 4,
-                'pertanyaan' => 'Apakah benar bahwa PHP adalah bahasa pemrograman terbaik?',
+                'pertanyaan' => 'Badan terbuat dari apa?',
                 'idmapel' => 4,
             ],
             [
                 'id_murid' => 5,
-                'pertanyaan' => 'Apakah benar bahwa PHP adalah bahasa pemrograman terbaik?',
+                'pertanyaan' => '5+5 berapa?',
                 'idmapel' => 1,
             ],
             [
                 'id_murid' => 2,
-                'pertanyaan' => 'Apakah benar bahwa PHP adalah bahasa pemrograman terbaik?',
+                'pertanyaan' => 'Hitung kecepataan benda yang bergerak dengan jarak 100 m dan waktu tempuh 20 s!',
                 'idmapel' => 2,
             ],
             [
                 'id_murid' => 3,
-                'pertanyaan' => 'Apakah benar bahwa PHP adalah bahasa pemrograman terbaik?',
-                'jawaban' => 'Tidak, PHP bukan bahasa pemrograman terbaik.',
+                'pertanyaan' => 'jelaskan apa itu neutron',
                 'idmapel' => 3,
             ],
             [
                 'id_murid' => 4,
-                'pertanyaan' => 'Apakah benar bahwa PHP adalah bahasa pemrograman terbaik?',
+                'pertanyaan' => 'Manusia terbuat dari apa?',
                 'idmapel' => 4,
             ],
         ];

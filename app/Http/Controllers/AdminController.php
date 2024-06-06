@@ -228,14 +228,14 @@ class AdminController extends Controller
                 'murid_id' => $murid_id,
             ]);
         }
-        return back()->with('success', 'Berhasil menambahkan peserta ke kelompok!');
+        return back()->with('success', 'Berhasil menambahkan murid ke kelas!');
     }
 
     public function deletemurid($id)
     {
         $detail_kelas = DetailKelas::find($id);
         $detail_kelas->delete();
-        return back()->with('success', 'Berhasil menghapus peserta dari kelompok!');
+        return back()->with('success', 'Berhasil menghapus murid dari kelas');
     }
 
     public function upload()
@@ -362,4 +362,20 @@ class AdminController extends Controller
         ];
         return view('iuran', $data);
     }
+
+    public function postIuran(Request $request)
+{
+    $userIds = $request->input('user_id');
+        foreach ($userIds as $id) {
+            $iuran = Iuran::find($id);
+            if ($iuran) {
+                $iuran->status = 1; 
+                $iuran->save();
+            }
+        }
+    
+
+    return redirect()->back()->with('success', 'Selected iuran status updated successfully.');
+}
+
 }
