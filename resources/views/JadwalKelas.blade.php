@@ -6,6 +6,7 @@
             transform: translateY(-0.9rem) scale(0.8);
             color: var(--primary-color, #000);
         }
+
         #title {
             margin-top: 3%;
             text-align: center;
@@ -195,7 +196,7 @@
                 }
             });
         });
-        
+
         $(document).ready(function() {
             $('#submit').on('click', async function() {
                 var hari = $('#hari').val();

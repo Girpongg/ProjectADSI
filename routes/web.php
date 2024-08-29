@@ -15,9 +15,7 @@ use App\Http\Controllers\AdminController;
 |
 */
 
-Route::get('/home', function () {
-    return view('homepage');
-})->name('home');
+
 Route::get('/login',[AdminController::class, 'login'])->name('login');
 Route::post('/postlogin',[AdminController::class, 'postlogin'])->name('postlogin');
 Route::get('/detailpertanyaan/{id}',[AdminController::class, 'detailpertanyaan'])->name('detailpertanyaan');

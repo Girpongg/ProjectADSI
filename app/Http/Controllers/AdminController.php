@@ -357,7 +357,6 @@ class AdminController extends Controller
             $item->tanggal = Carbon::parse($item->tanggal)->format('M Y');
         });
         $data = [
-            'title' => 'Iuran',
             'murid' => $iuran,
         ];
         return view('iuran', $data);

@@ -35,7 +35,7 @@
                         <option value="{{ $item['id'] }}" {{ $event->id_pelajaran == $item['id'] ? 'selected' : '' }}>
                             {{ $item['nama'] }}
                         </option>
-                    @endforeach
+                    @endforeach 
                 </select>
                 <label for="id_pelajaran"
                     class="absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-6 text-neutral-500 transition-all duration-200 ease-out {{ $event->id_pelajaran ? 'text-primary -translate-y-3 scale-75' : '' }}">
